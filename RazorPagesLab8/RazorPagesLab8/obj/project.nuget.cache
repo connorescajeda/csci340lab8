@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "t72tJZDYVZCkBAjmAlZGIO0SjKnIiUY40H2VROlDYXO9WJjeUiYPqkXZnfJvcNNmkHa9wNtTHQ1BN0s7ExPd9Q==",
+  "dgSpecHash": "6FuZ0sW6JMWbQ4F54X9DiAg8049VBpaYIlhbyyXC5gKTZp5JYxx2yXkF5UIeaKWkj5HV8iC1RIRRU6kOuupf/w==",
   "success": true,
-  "projectFilePath": "C:\\Coding stuff\\CSCI 340-Databases\\csci340lab8\\RazorPagesLab8\\RazorPagesLab8\\RazorPagesLab8.csproj",
+  "projectFilePath": "C:\\Coding Stuff\\csci340\\csci340lab8\\RazorPagesLab8\\RazorPagesLab8\\RazorPagesLab8.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\conno\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\conno\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\5.0.11\\microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.11.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\5.0.0\\microsoft.aspnetcore.razor.language.5.0.0.nupkg.sha512",

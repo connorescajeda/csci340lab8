@@ -35,7 +35,7 @@ namespace RazorPagesLab8.Pages.Students
                 return Page();
             }
 
-            _context.Student.Add(Student);
+            _context.Students.Add(Student);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
