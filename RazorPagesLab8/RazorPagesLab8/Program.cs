@@ -26,7 +26,6 @@ namespace RazorPagesLab8
                 try
                 {
                     var context = services.GetRequiredService<SchoolContext>();
-                    context.Database.EnsureCreated();
                     Dbinitializer.Initialize(context);
                 }
                 catch (Exception ex)
