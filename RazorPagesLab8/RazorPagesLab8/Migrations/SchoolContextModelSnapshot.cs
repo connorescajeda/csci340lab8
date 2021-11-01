@@ -19,6 +19,21 @@ namespace RazorPagesLab8.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("CourseInstructor", b =>
+                {
+                    b.Property<int>("CoursesCourseID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InstructorsID")
+                        .HasColumnType("int");
+
+                    b.HasKey("CoursesCourseID", "InstructorsID");
+
+                    b.HasIndex("InstructorsID");
+
+                    b.ToTable("CourseInstructor");
+                });
+
             modelBuilder.Entity("RazorPagesLab8.Models.Course", b =>
                 {
                     b.Property<int>("CourseID")
@@ -27,12 +42,45 @@ namespace RazorPagesLab8.Migrations
                     b.Property<int>("Credits")
                         .HasColumnType("int");
 
+                    b.Property<int>("DepartmentID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("CourseID");
 
+                    b.HasIndex("DepartmentID");
+
                     b.ToTable("Course");
+                });
+
+            modelBuilder.Entity("RazorPagesLab8.Models.Department", b =>
+                {
+                    b.Property<int>("DepartmentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Budget")
+                        .HasColumnType("money");
+
+                    b.Property<int?>("InstructorID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("DepartmentID");
+
+                    b.HasIndex("InstructorID");
+
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("RazorPagesLab8.Models.Enrollment", b =>
@@ -57,7 +105,47 @@ namespace RazorPagesLab8.Migrations
 
                     b.HasIndex("StudentID");
 
-                    b.ToTable("Enrollment");
+                    b.ToTable("Enrollments");
+                });
+
+            modelBuilder.Entity("RazorPagesLab8.Models.Instructor", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirstMidName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("FirstName");
+
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Instructor");
+                });
+
+            modelBuilder.Entity("RazorPagesLab8.Models.OfficeAssignment", b =>
+                {
+                    b.Property<int>("InstructorID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Location")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("InstructorID");
+
+                    b.ToTable("OfficeAssignments");
                 });
 
             modelBuilder.Entity("RazorPagesLab8.Models.Student", b =>
@@ -89,6 +177,41 @@ namespace RazorPagesLab8.Migrations
                     b.ToTable("Student");
                 });
 
+            modelBuilder.Entity("CourseInstructor", b =>
+                {
+                    b.HasOne("RazorPagesLab8.Models.Course", null)
+                        .WithMany()
+                        .HasForeignKey("CoursesCourseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RazorPagesLab8.Models.Instructor", null)
+                        .WithMany()
+                        .HasForeignKey("InstructorsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RazorPagesLab8.Models.Course", b =>
+                {
+                    b.HasOne("RazorPagesLab8.Models.Department", "Department")
+                        .WithMany("Courses")
+                        .HasForeignKey("DepartmentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("RazorPagesLab8.Models.Department", b =>
+                {
+                    b.HasOne("RazorPagesLab8.Models.Instructor", "Administrator")
+                        .WithMany()
+                        .HasForeignKey("InstructorID");
+
+                    b.Navigation("Administrator");
+                });
+
             modelBuilder.Entity("RazorPagesLab8.Models.Enrollment", b =>
                 {
                     b.HasOne("RazorPagesLab8.Models.Course", "Course")
@@ -108,9 +231,30 @@ namespace RazorPagesLab8.Migrations
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("RazorPagesLab8.Models.OfficeAssignment", b =>
+                {
+                    b.HasOne("RazorPagesLab8.Models.Instructor", "Instructor")
+                        .WithOne("OfficeAssignment")
+                        .HasForeignKey("RazorPagesLab8.Models.OfficeAssignment", "InstructorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instructor");
+                });
+
             modelBuilder.Entity("RazorPagesLab8.Models.Course", b =>
                 {
                     b.Navigation("Enrollments");
+                });
+
+            modelBuilder.Entity("RazorPagesLab8.Models.Department", b =>
+                {
+                    b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("RazorPagesLab8.Models.Instructor", b =>
+                {
+                    b.Navigation("OfficeAssignment");
                 });
 
             modelBuilder.Entity("RazorPagesLab8.Models.Student", b =>
