@@ -296,3 +296,4 @@ C:\Coding Stuff\csci340\csci340lab8\RazorPagesLab8\RazorPagesLab8\obj\Debug\net5
 C:\Coding Stuff\csci340\csci340lab8\RazorPagesLab8\RazorPagesLab8\obj\Debug\net5.0\RazorPagesLab8.csproj.CopyComplete
 C:\Coding Stuff\csci340\csci340lab8\RazorPagesLab8\RazorPagesLab8\obj\Debug\net5.0\RazorPagesLab8.genruntimeconfig.cache
 C:\Coding Stuff\csci340\csci340lab8\RazorPagesLab8\RazorPagesLab8\bin\Debug\net5.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+C:\Coding Stuff\csci340\csci340lab8\RazorPagesLab8\RazorPagesLab8\obj\Debug\net5.0\Razor\Pages\About.cshtml.g.cs
